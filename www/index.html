@@ -6,11 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>番茄时钟</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-3bf08beb.js"></script>
-    <link rel="stylesheet" href="/assets/index-5bde037c.css">
+    <script type="module" crossorigin src="/assets/index-1d06fe50.js"></script>
+    <link rel="stylesheet" href="/assets/index-6a882902.css">
   </head>
+   <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+      document.addEventListener("deviceready", onDeviceReady, false);
+      function onDeviceReady() {
+        document.getElementById("capturePhoto").addEventListener("click", capturePhoto);
+      }
+      function capturePhoto() {
+        navigator.camera.getPicture(onSuccess, onFail, {
+          quality: 50,
+          destinationType: Camera.DestinationType.FILE_URI
+        });
+      }
+
+      function onSuccess(imageURI) {
+        var image = document.getElementById('myImage');
+        image.src = imageURI;
+      }
+      function onFail(message) {
+        alert('Failed because: ' + message);
+      }
+    </script>
   <body>
     <div id="root"></div>
+      <button id="capturePhoto">Capture Photo</button>
+
+
+    <img id="myImage" src="" />
     
   </body>
 </html>
